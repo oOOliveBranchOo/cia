@@ -9,6 +9,8 @@
 <meta name="apple-mobile-web-app-title" content="C.I.A.">
 <meta name="theme-color" content="#2A8C72">
 <link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 <title>C.I.A.</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -182,6 +184,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:1
 /* ── HOME SCREEN ── */
 .home-hero{display:flex;align-items:center;gap:14px;padding:20px 0 16px}
 .home-logo{flex-shrink:0}
+.app-icon{width:44px;height:44px;border-radius:13px;display:block}
 .home-title{font-family:var(--head);font-size:24px;font-weight:700;color:var(--text);line-height:1.1}
 .home-sub{font-size:12px;color:var(--text3);margin-top:3px}
 .progress-bar-wrap{margin-bottom:20px}
@@ -585,7 +588,7 @@ body{color:var(--text)}
 <div id="page-home" class="page on">
   <div class="home-hero">
     <div class="home-logo">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="12" fill="var(--p1)"/><path d="M10 28 L20 12 L30 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="20" cy="22" r="2.5" fill="white"/></svg>
+      <img class="app-icon" src="icon.png" width="44" height="44" alt="">
     </div>
     <div>
       <div class="home-title">C.I.A.</div>

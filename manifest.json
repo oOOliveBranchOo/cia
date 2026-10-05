@@ -1,8 +1,11 @@
 ﻿{
-    "name":  "C.I.A.",
-    "short_name":  "C.I.A.",
-    "start_url":  "./",
-    "display":  "standalone",
-    "background_color":  "#F4FAF8",
-    "theme_color":  "#2A8C72"
+  "name": "C.I.A.",
+  "short_name": "C.I.A.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F4FAF8",
+  "theme_color": "#2A8C72",
+  "icons": [
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
 }
