@@ -161,8 +161,8 @@
   }
 }
 html,body{height:100%;overscroll-behavior:none}
-body{font-family:var(--body);background:#071810;color:var(--text);min-height:100dvh;display:flex;justify-content:center}
-#app{width:100%;max-width:480px;height:100dvh;background:var(--bg);color:var(--text);display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 0 48px rgba(0,0,0,.4)}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100dvh}
+#app{width:100%;height:100dvh;background:var(--bg);color:var(--text);display:flex;flex-direction:column;position:relative;overflow:hidden}
 #main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .page{display:none;padding:16px 18px 28px}
 .page.on{display:block;animation:pagein .22s ease}
@@ -294,9 +294,9 @@ body{font-family:var(--body);background:#071810;color:var(--text);min-height:100
 .fb{flex-shrink:0;padding:6px 13px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--body)}
 .fb.on{background:var(--p1);color:#fff;border-color:var(--p1);box-shadow:0 2px 8px rgba(42,140,114,0.25)}
 .scene{perspective:1200px;margin-bottom:16px}
-.fc{width:100%;min-height:272px;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.fc{width:100%;display:grid;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
 .fc.flip{transform:rotateY(180deg)}
-.face{position:absolute;width:100%;min-height:272px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);padding:24px 20px;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+.face{grid-area:1/1;width:100%;min-height:220px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);padding:24px 20px;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
 .front{background:linear-gradient(145deg, var(--p1) 0%, var(--p1b) 100%);color:#fff}
 .back{background:var(--surface);transform:rotateY(180deg);border:1px solid var(--border)}
 .fc-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;opacity:.55;margin-bottom:10px}
@@ -306,7 +306,7 @@ body{font-family:var(--body);background:#071810;color:var(--text);min-height:100
 .fc-simple{font-family:var(--head);font-size:16px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:10px}
 .fc-deeper{font-size:13px;color:var(--text2);line-height:1.6;background:var(--surface2);border-radius:var(--radius-sm);padding:11px 13px;margin-bottom:9px}
 .fc-analogy{font-size:12px;color:var(--text2);border-left:3px solid var(--c1);padding-left:11px;font-style:italic;line-height:1.5}
-.spacer{height:272px}
+.spacer{display:none}
 .mrow{display:none;gap:7px;margin-top:9px}
 .mrow.show{display:flex}
 .mb{flex:1;padding:9px;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;font-family:var(--body)}
@@ -456,7 +456,60 @@ body{font-family:var(--body);background:#071810;color:var(--text);min-height:100
   --border:rgba(60,140,110,0.18);--border2:rgba(60,140,110,0.28);
   color-scheme:dark;
 }
-body{background:#071810;color:var(--text)}
+body{color:var(--text)}
+
+@media (min-width: 960px) {
+  #app{
+    display:grid;
+    grid-template-columns:220px minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr);
+  }
+  .hdr{grid-column:2;grid-row:1}
+  #main{grid-column:2;grid-row:2;min-height:0}
+  .bottom-nav{
+    grid-column:1;
+    grid-row:1 / span 2;
+    flex-direction:column;
+    align-items:stretch;
+    gap:4px;
+    border-top:none;
+    border-right:1px solid var(--border);
+    padding:18px 12px 20px;
+  }
+  .bottom-nav::before{
+    content:'C.I.A.';
+    font-family:var(--head);
+    font-weight:700;
+    font-size:26px;
+    color:var(--p1);
+    padding:6px 12px 18px;
+  }
+  .bnav{
+    flex-direction:row;
+    justify-content:flex-start;
+    gap:10px;
+    padding:11px 12px;
+    border-radius:12px;
+  }
+  .bnav .ic{font-size:18px;width:24px;text-align:center}
+  .bnav .lb{font-size:14px;letter-spacing:0;text-transform:none}
+  .bnav.on{background:var(--p1-light)}
+  .page{max-width:920px;margin:0 auto;padding:28px 40px 64px}
+  #page-home.on{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:14px;
+    align-content:start;
+  }
+  #page-home .home-hero,
+  #page-home .progress-bar-wrap,
+  #page-home .section-label,
+  #page-home .home-exam-note,
+  #page-home .phone-tip{grid-column:1 / -1}
+  .phone-tip{display:none}
+  .drawer{display:none}
+  #menu-btn{display:none}
+}
 </style>
 </head>
 <body>
@@ -859,7 +912,6 @@ body{background:#071810;color:var(--text)}
     <div class="cs-row"><div class="cs-key">3L Model P5</div><div class="cs-val">IA independence achieved through: (1) accountability to the governing body · (2) unfettered access to people, resources, and data · (3) freedom from bias and interference.</div></div>
     <div class="cs-row"><div class="cs-key">Risk appetite</div><div class="cs-val">The types and amount of risk that an organization is willing to accept in pursuit of its strategies and objectives. CAE must assess whether risk appetite has been defined and whether a risk management framework has been implemented.</div></div>
   </div>
-</div>
 
   <p class="sec-lbl" style="margin-top:20px">SU 3.1 — Operational Auditing</p>
   <div class="cs-sec">
@@ -915,8 +967,6 @@ body{background:#071810;color:var(--text)}
     <div class="cs-row"><div class="cs-key">Document review</div><div class="cs-val">Value statements · Strategic plan and KPIs · Risk appetite statements · Org charts · Leadership communication style · Risk escalation protocols · Board/committee minutes · Incentive/compensation policies · Recruitment and retention processes</div></div>
   </div>
 
-</div>
-
   <p class="sec-lbl" style="margin-top:20px">SU 4.1 — Overview of Advisory Services</p>
   <div class="cs-sec">
     <div class="cs-head" style="background:var(--f1-light);color:var(--f1)">Advisory types, assurance interrelationship & charter authorization</div>
@@ -960,8 +1010,6 @@ body{background:#071810;color:var(--text)}
     <div class="cs-row"><div class="cs-key">Process mapping</div><div class="cs-val">Simple flowcharting to depict a business process. IA prepares maps to identify potential control gaps and streamline processes, verifies accuracy of maps against actual operations, and clearly indicates identified controls to assess their effectiveness.</div></div>
     <div class="cs-row"><div class="cs-key">System dev. reviews</div><div class="cs-val">IA examines processes and controls throughout the entire system development life cycle to ensure controls and audit trails are built in from the start. Key control matters: user needs clearly recorded; design follows predetermined plan; each part tested; change management validated; outsourced development contracts include same controls as internal development.</div></div>
   </div>
-
-</div>
 
   <p class="sec-lbl" style="margin-top:20px">SU 5.1 — Integrity <span style="font-weight:400;color:var(--text3)">· Principle 1</span></p>
   <div class="cs-sec">
@@ -1017,8 +1065,6 @@ body{background:#071810;color:var(--text)}
     <div class="cs-row"><div class="cs-key">Records management</div><div class="cs-val">Manage storage, keeping, and disposal of audit records · Share records with internal/external parties per policies · Deal with, access, or distribute confidential info only as long as necessary. CAE should consult legal counsel on legal privilege, attorney-client privilege, and retention requirements.</div></div>
     <div class="cs-row"><div class="cs-key">Info life cycle</div><div class="cs-val">Policies guide IA from the moment information is accessed through collection, transfer, storage, and disposal. Following data retention policies ensures sensitive information is not retained longer than necessary — minimizing exposure risks.</div></div>
   </div>
-
-</div>
 
   <p class="sec-lbl" style="margin-top:20px">SU 6.1 — Governance Principles</p>
   <div class="cs-sec">
@@ -1107,8 +1153,6 @@ body{background:#071810;color:var(--text)}
     <div class="cs-row"><div class="cs-key">ISO 31000 Roles</div><div class="cs-val">Board = overall oversight, ensuring risk mgmt system effective; Management = sets RISK ATTITUDE (approach to assess/pursue/retain/turn away from risk), identifies & manages risks; IA = assurance on ENTIRE risk management SYSTEM</div></div>
     <div class="cs-row alert"><div class="cs-key">3 ISO Assurance Approaches</div><div class="cs-val">1=Key principles (are principles followed?); 2=Process element (elements in practice?); 3=Maturity model (where on maturity curve? progressing? adding value? meeting org needs?)</div></div>
   </div>
-
-</div>
 
 <p class="sec-lbl" style="color:var(--su8)">Study Unit 8 · Controls: Types</p>
 
@@ -1220,6 +1264,7 @@ body{background:#071810;color:var(--text)}
   <div class="cs-row"><b>Fraud Reporting (CAE responsibility):</b> Formal report includes: time frames, observations, conclusions, resolution, corrective action. Addressed to legal counsel for attorney-client privilege. Significant fraud → timely report to senior management AND board.</div>
   <div class="cs-row warn"><b>Opinion Limits:</b> Internal auditor may express opinion on fraud-related CONTROLS — but it is INAPPROPRIATE to express an opinion on the culpability of a fraud suspect.</div>
 </section>
+</div>
 
 <!-- ═══════════════════════════════════════ VOCAB PAGE ═══════════════════════════════════════ -->
 <div id="page-vocab" class="page">
